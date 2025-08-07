@@ -1,0 +1,26 @@
+@startuml
+    class identifier1 {
+        - attribute1: type1
+        + operation1(): type2
+    }
+
+    class identifier2 {
+        - attribute2: type3
+        + operation2(): type4
+        + operation3(): type5
+    }
+
+    class identifier3 {
+        - attribute3: type6
+        + operation4(): type7
+    }
+
+    class identifier4 {
+        - attribute4: type8
+        + operation5(): type9
+    }
+
+    identifier1 "1" --> "1" identifier2 : relationName1
+    identifier2 "1" --> "1" identifier3 : relationName2
+    identifier2 "1" --> "1" identifier4 : relationName3
+@enduml

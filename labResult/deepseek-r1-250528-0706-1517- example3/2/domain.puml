@@ -1,0 +1,53 @@
+```plantuml
+@startuml
+interface IBooking {
+    + calculateTotalCost(): double
+    + confirmBooking(): boolean
+    + cancelBooking(): boolean
+}
+
+class IndividualBooking implements IBooking {
+    - bookingId: String
+    - checkInDate: Date
+    - checkOutDate: Date
+    + calculateTotalCost(): double
+    + confirmBooking(): boolean
+    + cancelBooking(): boolean
+}
+
+class GroupBooking implements IBooking {
+    - groupSize: int
+    + applyGroupDiscount(): void
+}
+
+class ConferenceBooking {
+    - equipmentRequirements: String
+}
+
+class ReservationRecord {
+    - confirmationNumber: String
+    + generateConfirmation(): String
+    + sendNotification(contactMethod: String): void
+}
+
+class Guest {
+    - guestId: String
+    - name: String
+    - contactInfo: String
+}
+
+class Room {
+    - roomId: String
+    - roomType: String
+    - pricePerNight: double
+    - availabilityStatus: boolean
+}
+
+IndividualBooking "1" *-- "1..*" Guest : guests
+IndividualBooking "1" o-- "1" Room : reservedRoom
+IndividualBooking "1" --> "0..1" ReservationRecord : generates
+GroupBooking "1" *-- "1..*" Guest : groupGuests
+GroupBooking "1" *-- "1..*" Room : reservedRooms
+ConferenceBooking --|> GroupBooking
+ConferenceBooking "1" --> "1" Room : conferenceRoom
+@enduml

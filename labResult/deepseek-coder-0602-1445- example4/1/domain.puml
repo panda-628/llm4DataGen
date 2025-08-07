@@ -1,0 +1,51 @@
+```plantuml
+@startuml
+class User {
+    + name: String
+    + age: int
+    + trackWorkout(): void
+    + setFitnessGoal(goalDescription: String): boolean
+    + getFitnessSummary(): String
+}
+
+class WorkoutPlan {
+    + planName: String
+    + generatePlan(): void
+}
+
+class Exercise {
+    + exerciseName: String
+    + isCompleted(): boolean
+    + getExerciseDetails(duration: int): String
+}
+
+class WorkoutSession {
+    + sessionType: String
+    + caloriesBurned: int
+    + isCompleted: boolean
+}
+
+class NutritionPlan {
+    + mealPlan: String
+}
+
+class UserInterface {
+    // Abstract class/interface members
+}
+
+class Trackable {
+    // Abstract class members
+}
+
+class FitnessEntity {
+    // Abstract class members
+}
+
+UserInterface <|.. User
+Trackable <|-- User
+Trackable <|-- WorkoutPlan
+Trackable <|-- Exercise
+Trackable <|-- WorkoutSession
+Trackable <|-- NutritionPlan
+FitnessEntity <|-- Trackable
+@enduml

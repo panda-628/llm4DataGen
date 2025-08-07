@@ -1,0 +1,60 @@
+```plantuml
+@startuml
+class Course {
+    - title: string
+    - description: string
+    - duration: int
+    + enrollStudent(): boolean
+    + publish(): void
+    + calculateCompletionRate(): float
+}
+
+class Instructor {
+    - expertise: string
+    + createCourse(): Course
+    + gradeAssignment(submission: Assignment): void
+}
+
+class Lesson {
+    - title: string
+    - content: string
+}
+
+class Student {
+    - enrolledCourses: List<Course>
+    + submitAssignment(assignment: Assignment): void
+}
+
+class User {
+    - name: string
+    - email: string
+    - login(): boolean
+}
+
+class Admin {
+    + manageUsers(): void
+    + generateReports(): void
+}
+
+class ContentCreator {
+    + createContent(): Lesson
+}
+
+class Assignment {
+    - title: string
+    - deadline: DateTime
+    + submit(): boolean
+}
+
+User <|-- Admin
+User <|-- ContentCreator
+User <|-- Instructor
+User <|-- Student
+
+Course "1" *-- "many" Lesson
+Course "1" -- "many" Student: enrolls >
+Instructor "1" -- "many" Course: teaches >
+Assignment "1" -- "1" Lesson: belongs to >
+Student "1" -- "many" Assignment: submits >
+Instructor "1" -- "many" Assignment: grades >
+@enduml

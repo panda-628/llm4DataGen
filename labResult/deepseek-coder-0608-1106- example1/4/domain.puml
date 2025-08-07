@@ -1,0 +1,89 @@
+:
+
+#corrected model
+```plantuml
+@startuml CarRentalSystem
+
+class Customer {
+  - customerId: String
+  - name: String
+  - driverLicenseNumber: String
+  - phoneNumber: String
+  - email: String
+  + registerCustomer(customerDetails: Map): Customer
+  + updateCustomerInfo(updatedInfo: Map): Boolean
+  + checkRentalHistory(): List<Rental>
+}
+
+class Vehicle {
+  - vehicleId: String
+  - make: String
+  - model: String
+  - year: Integer
+  - licensePlate: String
+  - currentMileage: Double
+  - status: VehicleStatus
+  - dailyRate: Double
+  + addVehicle(vehicleDetails: Map): Vehicle
+  + updateVehicleStatus(newStatus: VehicleStatus): Boolean
+  + calculateRentalCost(days: Integer): Double
+}
+
+enum VehicleStatus {
+  AVAILABLE
+  RENTED
+  MAINTENANCE
+  RESERVED
+}
+
+class Rental {
+  - rentalId: String
+  - startDate: Date
+  - endDate: Date
+  - actualReturnDate: Date
+  - totalCost: Double
+  - paymentStatus: String
+  + createRental(rentalDetails: Map): Rental
+  + calculateLateFee(): Double
+  + processReturn(returnDetails: Map): Boolean
+}
+
+class Reservation {
+  - reservationId: String
+  - pickupDate: Date
+  - returnDate: Date
+  - status: String
+  - specialRequests: String
+  + makeReservation(reservationDetails: Map): Reservation
+  + cancelReservation(): Boolean
+  + convertToRental(): Rental
+}
+
+class Payment {
+  - paymentId: String
+  - amount: Double
+  - paymentDate: Date
+  - paymentMethod: String
+  - transactionStatus: String
+  - paymentType: String
+  + processPayment(paymentDetails: Map): Payment
+  + issueRefund(refundAmount: Double): Boolean
+  + generateReceipt(): String
+}
+
+class InsuranceOption {
+  - optionId: String
+  - name: String
+  - dailyRate: Double
+  - coverageDetails: String
+}
+
+Customer "1" --> "0..*" Rental : has
+Vehicle "1" --> "0..*" Rental : assignedTo
+Reservation "1" --> "1" Rental : convertsTo
+Rental "1" --> "1..*" Payment : has
+Customer "1" --> "0..*" Reservation : makes
+Vehicle "1" --> "0..*" Reservation : reservedFor
+Rental "1" --> "0..*" InsuranceOption : includes
+Vehicle "1" --> "0..*" Rental : rentedIn
+@enduml

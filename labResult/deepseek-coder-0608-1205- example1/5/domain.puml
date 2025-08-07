@@ -1,0 +1,48 @@
+```plantuml
+@startuml
+    class Traveler {
+        - name: string
+        - contactInfo: string
+        + createItinerary(): Itinerary
+        + modifyItinerary(): void
+    }
+
+    class Itinerary {
+        - startDate: Date
+        - endDate: Date
+        - budget: float
+        + addDestination(destination: Destination): void
+        + removeDestination(destination: Destination): void
+        + calculateTotalCost(): float
+        + generateSummary(): string
+    }
+
+    class Destination {
+        - location: string
+        - duration: int
+        - costEstimate: float
+        + getAttractions(): Attraction[]
+        + calculateLocalCost(): float
+    }
+
+    class Transportation {
+        - mode: string
+        - departureTime: DateTime
+        - arrivalTime: DateTime
+        - cost: float
+        + calculateCost(): float
+        + updateSchedule(): void
+    }
+
+    class Attraction {
+        - name: string
+        - ticketPrice: float
+        - visitingHours: string
+        + getDetails(): string
+    }
+
+    Traveler "1" --> "1..*" Itinerary : owns
+    Itinerary "1" --> "1..*" Destination : includes
+    Itinerary "1" --> "1..*" Transportation : uses
+    Destination "1" --> "1..*" Attraction : contains
+@enduml

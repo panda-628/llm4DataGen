@@ -1,0 +1,47 @@
+```plantuml
+@startuml
+class Course {
+    + courseTitle: String
+    + durationInHours: int
+    + publish(): void
+    + enroll(student: Student): boolean
+    + generateSyllabus(): String
+}
+
+class Instructor {
+    + instructorName: String
+    + createLecture(): void
+}
+
+class CourseModule {
+    + moduleTitle: String
+    + isCompleted(): boolean
+    + getLessonContent(index: int): String
+}
+
+class Student {
+    + studentName: String
+    + studentID: int
+    + premiumMembershipStatus: boolean
+}
+
+class Lesson {
+    + lessonContent: String
+}
+
+interface Publishable {
+    + publish(): void
+}
+
+abstract class User {
+    + userName: String
+}
+
+Publishable <|.. Course
+User <|-- Instructor
+User <|-- Student
+Course "1" *-- "many" CourseModule
+Course "1" -- "many" Instructor
+Course "1" -- "many" Student
+CourseModule "1" *-- "many" Lesson
+@enduml

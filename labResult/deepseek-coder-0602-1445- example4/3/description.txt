@@ -1,0 +1,35 @@
+model_description: ### Verification Process and Results
+
+1. **Consistency Check with Domain Model**:
+   - **Customer Registration**: The description mentions customers registering with their name and verifying their driver's license, which aligns with the `Customer` class's `register()` and `verifyLicense()` methods.
+   - **Vehicle Details**: The description correctly includes `licensePlate`, `make`, `model`, `year`, and `status` as per the `Vehicle` class.
+   - **Reservation Process**: The description mentions selecting start/end dates and checking availability, matching the `Reservation` class's attributes and methods (`startDate`, `endDate`, `checkAvailability()`).
+   - **Payment**: The description states that payment is processed securely, which aligns with the `Payment` class and its `processPayment()` method.
+   - **Rental Lifecycle**: The description correctly describes the rental process (starting, ending, updating status) as per the `Rental` class and its methods (`startRental()`, `endRental()`).
+   - **Observer Pattern**: The description mentions customers receiving notifications upon rental completion, which aligns with the `RentalObserver` interface and its `notifyRentalEnd()` method implemented by `Customer`.
+
+2. **Unreasonable or Missing Parts**:
+   - **Login/Logout**: The description does not mention the login/logout functionality, which is part of the `User` abstract class inherited by `Customer`. This is a minor omission but should be included for completeness.
+   - **Rental Cost Calculation**: The description mentions the system calculates rental cost but does not explicitly tie it to the `Reservation` class's `calculateCost()` method. This could be clarified.
+   - **Rental History**: The description mentions customers can check their rental history, which aligns with the `Customer` class's `getRentalHistory()` method, but the return type is `String` in the model, which might not be ideal (should likely be a list/collection of rentals).
+
+3. **Corrections**:
+   - Add a note about login/logout functionality for customers.
+   - Clarify that rental cost calculation is done by the `Reservation` class.
+   - Suggest updating the `getRentalHistory()` return type in the model to a more appropriate data structure (e.g., `List<Rental>`).
+
+### Final Modified Description
+
+**System Description**  
+The car rental system enables customers to rent vehicles for personal or business use. Customers can register by providing their name and verifying their driver's license. Registered customers can log in and out of the system securely. Once logged in, they can browse available vehicles, check their rental history (a list of past and current rentals), and make reservations for specific dates.  
+
+A customer can reserve a vehicle by selecting a start and end date, and the system checks the vehicle's availability using the `Reservation` class. If the reservation is confirmed, the customer proceeds with payment, which is processed securely by the `Payment` class. The system calculates the rental cost based on the duration of the reservation using the `calculateCost()` method in the `Reservation` class.  
+
+When a rental begins, the vehicle's status is updated to "rented" via the `Vehicle` class's `updateStatus()` method, and the customer can use it for the agreed period. Upon returning the vehicle, the rental is marked as completed, and the customer receives a notification (implemented via the `RentalObserver` interface). The system tracks vehicle details such as license plate, make, model, year, and current status (e.g., available, rented, or under maintenance).  
+
+Customers can view their active and past rentals, while administrators manage vehicle inventory and monitor reservations. The system ensures a seamless rental experience by automating payments, availability checks, and status updates.  
+
+### Suggested Domain Model Update
+- Change the return type of `getRentalHistory()` in the `Customer` class from `String` to `List<Rental>` for better usability.  
+
+The corrected description now fully aligns with the domain model and includes all key functionalities.

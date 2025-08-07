@@ -1,0 +1,7 @@
+=== PlantUML类图与系统描述匹配分析 ===
+总体匹配度: 0.603
+BERT语义匹配度: 0.331
+结构匹配度: 0.875
+
+=== 类图统计 ===类的数量: 8关系数量: 7类名列表: User, FitnessClass, Booking, Payment, Instructor, Location, Equipment, Notification
+=== 匹配详情 ===匹配的类: User, FitnessClass, Booking, Payment, Instructor, Location, Equipment未匹配的类: Notification

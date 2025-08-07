@@ -1,0 +1,47 @@
+```plantuml
+@startuml
+interface Controllable {
+    turnOn(): void
+    turnOff(): void
+    getStatus(): String
+}
+
+abstract class Device {
+    + deviceID: String
+}
+
+class SecurityDevice extends Device implements Controllable {
+    + batteryLevel: int
+    + activateAlarm(): void
+    + validateAccessCode(accessCode: String): boolean
+    + turnOn(): void
+    + turnOff(): void
+    + getStatus(): String
+}
+
+class ClimateDevice extends Device implements Controllable {
+    + currentTemperature: float
+    + adjustSettings(newTemp: float): void
+    + turnOn(): void
+    + turnOff(): void
+    + getStatus(): String
+}
+
+class Camera extends SecurityDevice {
+    + resolution: String
+    + motionDetected(): boolean
+    + recordVideo(duration: int): String
+}
+
+class DoorLock extends SecurityDevice {
+    + lockState: String
+    + unlockCode: String
+    + autoLockEnabled: boolean
+    + lock(): void
+    + unlock(): void
+}
+
+class IndoorCamera extends Camera {
+    + roomLocation: String
+}
+@enduml

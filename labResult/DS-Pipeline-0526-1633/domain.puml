@@ -1,0 +1,70 @@
+:
+
+#corrected model
+```plantuml
+@startuml
+
+class SoftwareComponent {
+  - String name
+  - Version version
+  - boolean isDeprecated
+  + void deploy()
+  + Version getVersion()
+  + boolean isCompatible(Version otherVersion)
+}
+
+class RequirementSpecification {
+  - List<Requirement> requirements
+  + void addRequirement(Requirement newRequirement)
+  + TestReport verifyImplementation(SoftwareComponent component)
+}
+
+class BugIssue <<entity>> {
+  - Severity severity
+  - Status status
+}
+
+class DependencyContainer {
+  - List<Dependency> dependencies
+  + void addDependency(Dependency newDependency)
+}
+
+abstract class SoftwareArtifact {
+  - Date createdDate
+  - String author
+}
+
+class ExecutableComponent {
+  - String buildTarget
+}
+
+class DocumentationArtifact {
+  - String format
+}
+
+class APIDocumentation {
+  - String sdkVersion
+}
+
+SoftwareArtifact <|-- ExecutableComponent
+SoftwareArtifact <|-- DocumentationArtifact
+ExecutableComponent <|-- SoftwareComponent
+DocumentationArtifact <|-- APIDocumentation
+SoftwareComponent "1" -- "0..*" RequirementSpecification : satisfies
+SoftwareComponent "1" -- "1" DependencyContainer : requires
+SoftwareComponent "1" -- "0..*" BugIssue : reports
+
+note top of SoftwareComponent: Represents a deployable software unit\nwith versioning and compatibility
+note top of RequirementSpecification: Functional and non-functional requirements\nthat components must satisfy
+note top of BugIssue: Tracks defects with severity and status
+note top of DependencyContainer: Manages external library dependencies
+note top of SoftwareArtifact: Abstract base for all software artifacts
+note top of ExecutableComponent: Concrete executable software elements
+note top of DocumentationArtifact: Base for all documentation types
+note top of APIDocumentation: Specialized API documentation
+
+note on link: General software artifact hierarchy
+note on link: Components implement requirement specs
+note on link: Components report bugs but don't own them
+note on link: Components declare their dependencies
+@enduml

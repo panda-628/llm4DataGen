@@ -1,0 +1,47 @@
+```plantuml
+@startuml
+class User {
+    + name: String
+    + age: int
+    + updateProfile(): void
+    + verifyGoal(goal: String): boolean
+    + getFitnessLevel(): String
+}
+
+class Workout {
+    + workoutType: String
+    + startWorkout(): void
+}
+
+class Exercise {
+    + exerciseName: String
+    + isCompleted(): boolean
+    + getInstructions(reps: int): String
+}
+
+class Activity {
+    + activityType: String
+    + duration: int
+    + isTracked: boolean
+}
+
+class Equipment {
+    + equipmentName: String
+}
+
+class PremiumUser {
+    + premiumFeatures: String[]
+    + accessPremiumContent(): void
+}
+
+class BasicUser {
+    + basicFeatures: String[]
+}
+
+User <|-- PremiumUser
+User <|-- BasicUser
+User "1" *-- "0..*" Workout
+Workout "1" *-- "1..*" Exercise
+Exercise "1" -- "0..*" Equipment
+User "1" *-- "0..*" Activity
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+class identifier1 {
+    + attribute1: String
+    + attribute2: int
+    + operation1(): void
+    + operation2(attribute3: String): boolean
+    + operation3(): String
+}
+
+class identifier2 {
+    + attribute4: String
+    + operation4(): void
+}
+
+class identifier3 {
+    + attribute5: String
+    + operation5(): boolean
+    + operation6(attribute6: int): String
+}
+
+class identifier4 {
+    + attribute7: String
+    + attribute8: int
+    + attribute9: boolean
+}
+
+class identifier5 {
+    + attribute10: String
+}
+
+class identifier6 {
+    
+}
+
+class identifier7 {
+    
+}
+
+identifier6 <|.. identifier1
+identifier7 <|-- identifier1
+identifier7 <|-- identifier2
+identifier1 <|-- identifier3
+identifier1 <|-- identifier4
+identifier3 <|-- identifier5
+@enduml

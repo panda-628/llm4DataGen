@@ -1,0 +1,44 @@
+```plantuml
+@startuml
+    class Student {
+        - studentId: string
+        - name: string
+        - gradeLevel: string
+        + scheduleSession(tutor: Tutor, time: DateTime): boolean
+        + cancelSession(): boolean
+        + makePayment(amount: number): boolean
+    }
+
+    class Tutor {
+        - tutorId: string
+        - name: string
+        - expertise: string[]
+        - hourlyRate: number
+        + acceptSession(session: Session): boolean
+        + rejectSession(): boolean
+        + uploadMaterial(material: File): boolean
+    }
+
+    class Session {
+        - sessionId: string
+        - duration: number
+        - startTime: DateTime
+        - status: string
+        + recordSession(): boolean
+        + endSession(): boolean
+    }
+
+    class Payment {
+        - paymentId: string
+        - amount: number
+        - status: string
+        - timestamp: DateTime
+        + processPayment(): boolean
+        + issueRefund(): boolean
+    }
+
+    Student "1" --> "0..*" Tutor : books >
+    Tutor "1" --> "0..*" Session : conducts >
+    Student "1" --> "0..*" Payment : makes >
+    Session "1" --> "1" Payment : generates >
+@enduml

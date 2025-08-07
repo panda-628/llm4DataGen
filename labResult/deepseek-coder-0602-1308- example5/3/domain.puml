@@ -1,0 +1,47 @@
+```plantuml
+@startuml
+class Vehicle {
+    + startEngine()
+    + stopEngine()
+    + licensePlate: String
+    + currentFuelLevel: float
+}
+
+interface Trackable {
+    + getCurrentLocation(): Coordinates
+    + getRouteHistory(): Route[]
+}
+
+interface Maintainable {
+    + scheduleMaintenance(date: Date)
+    + getMaintenanceHistory(): MaintenanceRecord[]
+}
+
+class FleetManager {
+    + addVehicle(vehicle: Vehicle)
+    + removeVehicle(vehicleId: String)
+    + getFleetSize(): int
+    + assignDriver(vehicle: Vehicle, driver: Driver)
+}
+
+class Driver {
+    + driverId: String
+    + licenseNumber: String
+    + assignVehicle(vehicle: Vehicle)
+    + getAssignedVehicle(): Vehicle
+}
+
+class FleetManagementSystem {
+    + trackVehicle(vehicle: Vehicle): Location
+    + generateMaintenanceReport(vehicle: Vehicle): Report
+}
+
+FleetManagementSystem --> Trackable
+FleetManagementSystem --> Maintainable
+FleetManagementSystem --> Vehicle
+Vehicle ..|> Trackable
+Vehicle ..|> Maintainable
+FleetManager --> Driver
+FleetManager o--> Vehicle
+Driver --> Vehicle
+@enduml

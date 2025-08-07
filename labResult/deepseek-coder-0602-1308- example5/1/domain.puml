@@ -1,0 +1,39 @@
+```plantuml
+@startuml
+class UserProfile {
+    + updateProfile()
+    + fitnessGoals
+}
+
+interface Trackable {
+    + startTracking()
+    + stopTracking()
+}
+
+interface Analyzable {
+    + analyzeData()
+}
+
+class WorkoutPlan {
+    + generatePlan()
+    + adjustPlan()
+    + exercises
+}
+
+class NutritionTracker {
+    + logMeal()
+    + dailyCalories
+    + nutrientBreakdown
+}
+
+class ActivityTracker {
+    + trackActivity()
+    + activityHistory
+}
+
+ActivityTracker --|> Trackable
+ActivityTracker --|> Analyzable
+UserProfile "1" *-- "1" ActivityTracker : uses
+WorkoutPlan "1" *-- "1" UserProfile : for
+NutritionTracker "1" *-- "1" UserProfile : for
+@enduml

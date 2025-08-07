@@ -1,0 +1,72 @@
+:
+
+#corrected model
+```plantuml
+@startuml
+class Course {
+    - instructor: Instructor
+    - modules: List<Module>
+    - enrolledStudents: List<Student>
+    + Course(Instructor instructor)
+    + publish(): void
+    + enrollStudent(Student student): void
+    + addModule(Module module): void
+}
+
+class Instructor {
+    + createCoreContent(): void
+    + approveContent(): void
+}
+
+class Module {
+    - lessons: List<Lesson>
+    + addLesson(Lesson lesson): void
+}
+
+class Student {
+    - enrolledCourses: List<Course>
+    + submitAssignment(): void
+}
+
+class TeachingAssistant {
+    + createSupplementaryContent(): void
+}
+
+class GuestLecturer {
+    + createGuestContent(): void
+}
+
+abstract class Lesson {
+    + display(): void
+}
+
+class VideoLesson {
+    + play(): void
+}
+
+class QuizLesson {
+    + startQuiz(): void
+}
+
+class PremiumStudent {
+    - membershipLevel: String
+    + accessPremiumContent(): void
+    + requestTutor(): void
+}
+
+class FreeStudent {
+    - accessLevel: String
+    + accessBasicContent(): void
+}
+
+Course *-- Instructor
+Course *-- Module
+Course "1" *-- "many" Student
+Instructor <|-- TeachingAssistant
+Instructor <|-- GuestLecturer
+Module "1" *-- "many" Lesson
+Lesson <|-- VideoLesson
+Lesson <|-- QuizLesson
+Student <|-- PremiumStudent
+Student <|-- FreeStudent
+@enduml

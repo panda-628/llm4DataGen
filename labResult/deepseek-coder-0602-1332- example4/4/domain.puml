@@ -1,0 +1,49 @@
+```plantuml
+@startuml
+class ParkingLot {
+    + location: String
+    + totalSpaces: int
+    + openLot(): void
+    + reserveSpace(licensePlate: String): boolean
+    + getAvailability(): int
+}
+
+class ParkingSensor {
+    + sensorId: String
+    + isOccupied: boolean
+    + detectVehicle(): void
+}
+
+class ParkingSpace {
+    + spaceNumber: String
+    + isOccupied: boolean
+    + calculateFee(duration: int): float
+}
+
+class PaymentSystem {
+    + paymentMethod: String
+    + amount: float
+    + isPaid: boolean
+    + processPayment(): boolean
+}
+
+class Vehicle {
+    + licensePlate: String
+    + vehicleType: String
+}
+
+interface ParkingSystemInterface {
+    + {abstract} getStatus(): String
+}
+
+abstract class ParkingEntity {
+    + {abstract} update(): void
+}
+
+ParkingSystemInterface <|.. ParkingLot
+ParkingEntity <|-- ParkingLot
+ParkingEntity <|-- ParkingSensor
+ParkingLot "1" *-- "many" ParkingSpace
+ParkingLot "1" *-- "1" PaymentSystem
+ParkingSpace "1" -- "0..1" Vehicle
+@enduml

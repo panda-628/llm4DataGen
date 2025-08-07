@@ -1,0 +1,64 @@
+```plantuml
+@startuml
+class RentalTransaction {
+    - rentalId: String
+    - startDate: Date
+    - endDate: Date
+    - totalCost: Double
+    + calculateCost(): Double
+    + generateInvoice(): Invoice
+    + processPayment(): Boolean
+}
+
+class Customer {
+    - customerId: String
+    - name: String
+    - contactInfo: String
+    + getRentalHistory(): List<RentalTransaction>
+    + updateProfile(newDetails: CustomerDetails): Boolean
+}
+
+class Vehicle {
+    - vehicleId: String
+    - make: String
+    - model: String
+    - year: Integer
+    - dailyRate: Double
+    - isAvailable: Boolean
+}
+
+class Payment {
+    - paymentId: String
+    - amount: Double
+    - paymentDate: Date
+    - paymentMethod: PaymentMethod
+}
+
+class VehicleType {
+    - typeName: String
+    - description: String
+}
+
+class Car {
+    - numSeats: Integer
+    - carType: String
+}
+
+class Truck {
+    - loadCapacity: Double
+    - truckType: String
+}
+
+class Insurance {
+    - insuranceId: String
+    - coverageType: String
+    - dailyCost: Double
+}
+
+VehicleType <|-- Car
+VehicleType <|-- Truck
+RentalTransaction "1" *-- "1" Customer : books
+RentalTransaction "1" *-- "1" Vehicle : rents
+RentalTransaction "1" *-- "1" Payment : has
+RentalTransaction "1" *-- "0..1" Insurance : includes
+@enduml

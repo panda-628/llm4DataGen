@@ -1,0 +1,86 @@
+:
+
+#corrected model
+```plantuml
+@startuml SmartHomeAutomationSystem
+
+class User {
+  + String userId
+  + String name
+  + String email
+  + String phoneNumber
+  + String role
+  + JSON<HomePreferences> preferences
+  
+  + registerDevice(Device)
+  + createAutomation(AutomationRule)
+  + adjustPreferences(JSON<HomePreferences>)
+}
+
+class Device {
+  + String deviceId
+  + String name
+  + String type
+  + String manufacturer
+  + String model
+  + Boolean status
+  + DateTime lastActivity
+  + Float currentPowerConsumption
+  
+  + turnOn()
+  + turnOff()
+  + updateStatus(Boolean)
+  + reportMetrics()
+}
+
+class Room {
+  + String roomId
+  + String name
+  + String type
+  + Integer floor
+  + Float temperature
+  + Float humidity
+  
+  + addDevice(Device)
+  + removeDevice(String)
+  + getEnvironmentalData()
+}
+
+class AutomationRule {
+  + String ruleId
+  + String name
+  + String triggerCondition
+  + String action
+  + Boolean isActive
+  + JSON<Schedule> schedule
+  + Integer priority
+  
+  + activate()
+  + deactivate()
+  + execute()
+  + evaluateConditions()
+}
+
+class Hub {
+  + String hubId
+  + String name
+  + String ipAddress
+  + String firmwareVersion
+  + Boolean connectionStatus
+  + DateTime lastSync
+  + String location
+  
+  + connectDevice(Device)
+  + disconnectDevice(String)
+  + updateFirmware()
+  + syncDevices()
+}
+
+User "1" -- "many" Device : owns
+User "1" -- "many" AutomationRule : creates
+Room "1" -- "many" Device : contains
+Hub "1" -- "many" Device : controls
+AutomationRule "1" -- "1..*" Device : triggers
+AutomationRule "1" -- "1..*" Device : actions
+Hub "1" -- "1" Room : located_in
+@enduml

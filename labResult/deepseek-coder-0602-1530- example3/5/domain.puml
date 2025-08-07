@@ -1,0 +1,61 @@
+```plantuml
+@startuml
+class Patient {
+    - patientId: string
+    - name: string
+    - dateOfBirth: Date
+    + scheduleAppointment(): Appointment
+    + viewMedicalHistory(): MedicalRecord[]
+    + makePayment(): boolean
+}
+
+class Doctor {
+    - doctorId: string
+    - name: string
+    - specialization: string
+    + diagnosePatient(): Diagnosis
+    + prescribeMedication(patient: Patient): Prescription
+}
+
+class Appointment {
+    - appointmentId: string
+    - dateTime: DateTime
+    - status: string
+}
+
+class MedicalRecord {
+    - recordId: string
+    - treatments: List<Treatment>
+    - diagnoses: List<Diagnosis>
+}
+
+class Person {
+    - name: string
+    - dateOfBirth: Date
+}
+
+class Staff {
+    - staffId: string
+    - position: string
+}
+
+class Nurse {
+    - nurseId: string
+    - department: string
+}
+
+class Treatment {
+    - treatmentId: string
+    - description: string
+    - date: Date
+}
+
+Person <|-- Staff
+Person <|-- Patient
+Staff <|-- Doctor
+Staff <|-- Nurse
+Patient "1" *-- "0..*" MedicalRecord
+Patient "1" *-- "0..*" Appointment
+Doctor "1" -- "0..*" Appointment
+Doctor "1" -- "0..*" MedicalRecord
+@enduml

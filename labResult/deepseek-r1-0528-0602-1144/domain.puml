@@ -1,0 +1,56 @@
+```plantuml
+@startuml
+interface Shippable {
+  + calculateShippingCost(): double
+  + updateShippingMethod(method: String): void
+}
+
+class Product {
+  - name: String
+  - description: String
+  - weight: double
+  + calculateShippingCost(): double
+  + updateShippingMethod(method: String): void
+}
+
+class ElectronicsProduct extends Product {
+  - warrantyPeriod: int
+  - modelNumber: String
+  - brand: String
+  + calculateWarrantyEndDate(): Date
+  + checkCompatibility(): boolean
+  + generateSpecifications(): Map<String,String>
+}
+
+class ClothingProduct extends Product {
+  - size: String
+  - color: String
+  - fabric: String
+  + getSizeChart(): Map<String, String>
+}
+
+class ProductSKU {
+  - skuCode: String
+  - price: double
+  - stockQuantity: int
+}
+
+class ProductGallery {
+  - imageUrls: List<String>
+}
+
+class Category {
+  - name: String
+  - description: String
+}
+
+class Electronics extends Category {
+}
+
+class Clothing extends Category {
+}
+
+Product *-- ProductSKU
+Product *-- ProductGallery
+Product "1" -- "*" Category
+@enduml

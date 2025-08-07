@@ -1,0 +1,60 @@
+```plantuml
+@startuml
+class WorkoutSession {
+    - startTime: DateTime
+    - duration: int
+    - caloriesBurned: double
+    + start(): void
+    + pause(): void
+    + end(): void
+}
+
+class ActivityType {
+    - name: String
+    - description: String
+    + isEligibleForRewards(): bool
+}
+
+class Exercise {
+    - name: String
+    - targetMuscleGroup: String
+}
+
+class HeartRateData {
+    - bpmRecords: List<Integer>
+    + getAverageBPM(): int
+}
+
+class ActivityCategory {
+}
+
+class CardioActivity {
+    - distance: double
+    + calculatePace(): double
+}
+
+class StrengthActivity {
+    - maxReps: int
+    + determineDifficultyLevel(): String
+}
+
+class RunningSession {
+    - elevationGain: double
+    + trackRoute(): void
+}
+
+class WeightLiftingSession {
+    - equipmentUsed: String
+    + recordPR(): void
+}
+
+ActivityCategory <|.. CardioActivity
+ActivityCategory <|.. StrengthActivity
+CardioActivity <|-- RunningSession
+StrengthActivity <|-- WeightLiftingSession
+WorkoutSession <|-- RunningSession
+WorkoutSession <|-- WeightLiftingSession
+WorkoutSession o-- Exercise
+WorkoutSession *-- HeartRateData
+WorkoutSession --> ActivityType : type
+@enduml

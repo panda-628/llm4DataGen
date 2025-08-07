@@ -1,0 +1,39 @@
+:
+
+#corrected model
+```plantuml
+@startuml
+    class SmartHome {
+        - address: string
+        - installationDate: Date
+        + getStatus(): string
+        + addUser(): boolean
+    }
+
+    class Hub {
+        - ipAddress: string
+        - firmwareVersion: string
+        + connectDevice(): boolean
+        + disconnectDevice(): boolean
+        + discoverDevices(): Device[]
+    }
+
+    class Device {
+        - deviceId: string
+        - powerState: boolean
+        + togglePower(): void
+        + getStatus(): string
+    }
+
+    class User {
+        - userId: string
+        - accessLevel: string
+        + authenticate(): boolean
+        + controlDevice(): boolean
+    }
+
+    SmartHome "1" --> "1" Hub : controls
+    Hub "1" --> "*" Device : manages
+    SmartHome "1" --> "*" User : has
+    User "1" --> "*" Device : controls
+@enduml

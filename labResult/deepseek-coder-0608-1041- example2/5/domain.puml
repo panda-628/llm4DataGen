@@ -1,0 +1,99 @@
+:
+
+#corrected model
+```plantuml
+@startuml
+class Customer {
+    - customerId: String
+    - name: String
+    - address: String
+    + placeOrder(): Order
+}
+
+class Order {
+    - orderId: String
+    - orderTime: DateTime
+    - status: OrderStatus
+    - restaurant: Restaurant
+    - items: List<OrderItem>
+    - delivery: Delivery
+    + Order(Restaurant restaurant, List<OrderItem> items, Customer customer)
+    + placeOrder(): void
+    + updateStatus(): void
+    + calculateTotal(): float
+}
+
+class Restaurant {
+    - restaurantId: String
+    - name: String
+    - location: String
+    - menu: List<MenuItem>
+    + updateMenu(): void
+    + getMenu(): List<MenuItem>
+}
+
+class OrderItem {
+    - itemId: String
+    - quantity: int
+    + calculatePrice(): float
+}
+
+class Delivery {
+    - deliveryId: String
+    - status: DeliveryStatus
+    - estimatedTime: DateTime
+    + trackLocation(): void
+    + confirmDelivery(): void
+}
+
+class FastFoodRestaurant {
+    + updateMenu(): void
+}
+
+class FineDiningRestaurant {
+    + updateMenu(): void
+}
+
+class FoodItem {
+    - name: String
+    - price: float
+    + calculatePrice(): float
+}
+
+class BeverageItem {
+    - name: String
+    - price: float
+    + calculatePrice(): float
+}
+
+class BikeDelivery {
+    - deliveryPersonName: String
+    + trackLocation(): void
+    + confirmDelivery(): void
+}
+
+class CarDelivery {
+    - vehicleNumber: String
+    + trackLocation(): void
+    + confirmDelivery(): void
+}
+
+class Payment {
+    - paymentId: String
+    - amount: float
+    - status: PaymentStatus
+    + processPayment(): boolean
+}
+
+Customer "1" --> "0..*" Order
+Order *-- Restaurant
+Order *-- OrderItem
+Order *-- Delivery
+Order --> Payment
+Restaurant <|-- FastFoodRestaurant
+Restaurant <|-- FineDiningRestaurant
+OrderItem <|-- FoodItem
+OrderItem <|-- BeverageItem
+Delivery <|-- BikeDelivery
+Delivery <|-- CarDelivery
+@enduml

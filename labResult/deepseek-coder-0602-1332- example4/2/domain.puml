@@ -1,0 +1,51 @@
+```plantuml
+@startuml
+class SmartDevice {
+    + deviceId: String
+    + firmwareVersion: int
+    + turnOn(): void
+    + configure(configuration: String): boolean
+    + getStatus(): String
+}
+
+class RoomController {
+    + roomName: String
+    + adjustLighting(): void
+    + controlTemperature(): void
+}
+
+class LightBulb {
+    + colorMode: String
+    + changeColor(): boolean
+    + setBrightness(level: int): void
+}
+
+class Thermostat {
+    + currentMode: String
+    + currentTemperature: int
+    + isScheduled: boolean
+    + setTemperature(temp: int): void
+}
+
+class SecurityCamera {
+    + cameraResolution: String
+    + record(): void
+    + motionDetection(): boolean
+}
+
+interface Connectable {
+    + connect(): boolean
+    + disconnect(): void
+}
+
+abstract class AutomationComponent {
+    + {abstract} automate(): void
+}
+
+Connectable <|.. SmartDevice
+AutomationComponent <|-- SmartDevice
+AutomationComponent <|-- RoomController
+SmartDevice <|-- LightBulb
+SmartDevice <|-- Thermostat
+SmartDevice <|-- SecurityCamera
+@enduml

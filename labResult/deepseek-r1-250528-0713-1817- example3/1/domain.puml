@@ -1,0 +1,84 @@
+```plantuml
+@startuml
+class Playlist {
+    - id: UUID
+    - name: String
+    - creationDate: LocalDateTime
+    + addTrack(track: Track): void
+    + removeTrack(track: Track): void
+    + calculateDuration(): Duration
+}
+
+class UserAccount {
+    - username: String
+    - email: String
+    - subscriptionStatus: SubscriptionStatus
+    + upgradeSubscription(): void
+    + downgradeSubscription(): void
+    + getPlaybackHistory(): List<Playback>
+}
+
+class Track {
+    - id: UUID
+    - title: String
+    - duration: Duration
+    - album: Album
+    + play(): void
+    + pause(): void
+    + getMetadata(): TrackMetadata
+}
+
+class Album {
+    - id: UUID
+    - title: String
+    - releaseDate: LocalDate
+    + getTracks(): List<Track>
+}
+
+class Artist {
+    - name: String
+    - genres: List<Genre>
+    + getDiscography(): List<Album>
+    + addNewAlbum(album: Album): void
+}
+
+class Playback {
+    - id: UUID
+    - startTime: LocalDateTime
+    - endTime: LocalDateTime
+    - track: Track
+}
+
+class Subscription {
+}
+
+class Genre {
+    - name: String
+    - description: String
+}
+
+class FreeTier {
+}
+
+class PremiumTier {
+}
+
+' Subscription relationships
+Subscription <|.. FreeTier
+Subscription <|.. PremiumTier
+
+' UserAccount relationships
+UserAccount "1" *-- "1" Subscription : has >
+UserAccount "1" *-- "*" Playlist : owns >
+UserAccount "1" o-- "*" Playback : has >
+
+' Playlist relationships
+Playlist "1" o-- "*" Track : contains >
+
+' Album relationships
+Album "1" *-- "*" Track : contains >
+Album "1..*" -- "*" Artist : created by >
+
+' Playback relationships
+Playback "1" *-- "1" Track : plays >
+@enduml

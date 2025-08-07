@@ -1,0 +1,51 @@
+```plantuml
+@startuml
+entity Smartphone {
+    - brand: String
+    - storageCapacity: int
+    - isWaterproof: boolean
+    + makeCall(number: String): void
+    + getModel(): String
+    + checkBatteryLevel(): int
+}
+
+entity Device {
+    - weight: double
+    + isPortable(): boolean
+    + calculatePowerConsumption(usageHours: String): double
+}
+
+entity Component {
+    - componentType: String
+    - manufacturer: String
+}
+
+entity Accessories {
+    - includedItems: List<String>
+}
+
+entity Product {
+    - productId: String
+    - price: double
+}
+
+entity Electronics {
+    - warrantyPeriod: int
+}
+
+entity Appliances {
+    - energyRating: String
+}
+
+entity KitchenAppliance {
+    - isCountertop: boolean
+}
+
+Product <|.. Electronics
+Product <|.. Appliances
+Electronics <|-- Smartphone
+Appliances <|-- KitchenAppliance
+Device <|-- Smartphone
+Smartphone o-- Accessories
+Smartphone *-- Component
+@enduml

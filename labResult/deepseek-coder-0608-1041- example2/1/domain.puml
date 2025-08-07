@@ -1,0 +1,92 @@
+:
+
+#corrected model
+```plantuml
+@startuml
+class WorkoutPlan {
+    - planId: String
+    - creationDate: Date
+    - user: User
+    - exercises: List<Exercise>
+    + WorkoutPlan(User user, List<Exercise> exercises)
+    + startWorkout(): void
+    + logProgress(FitnessMetrics metrics): void
+    + modifyPlan(): void
+    + getPlanDetails(): String
+}
+
+abstract class User {
+    - userId: String
+    - name: String
+    - age: Int
+    - weight: Float
+    + updateProfile(): void
+    + getWorkoutHistory(): List<WorkoutPlan>
+}
+
+class Exercise {
+    - exerciseId: String
+    - name: String
+    - duration: Int
+    + displayInstructions(): void
+    + calculateCaloriesBurned(): Float
+}
+
+class FitnessMetrics {
+    - timestamp: Date
+    + analyzePerformance(): void
+    + generateReport(): String
+}
+
+class FreeUser {
+    - adsEnabled: Boolean
+    + updateProfile(): void
+}
+
+class PremiumUser {
+    - subscriptionType: String
+    + updateProfile(): void
+    + createCustomPlan(): WorkoutPlan
+}
+
+class CardioExercise {
+    - distance: Float
+    + displayInstructions(): void
+    + calculatePace(): Float
+}
+
+class StrengthExercise {
+    - sets: Int
+    - reps: Int
+    - weight: Float
+    + displayInstructions(): void
+    + calculateVolume(): Float
+}
+
+class HeartRateMetrics {
+    - heartRateData: List<Int>
+    - maxHR: Int
+    - avgHR: Int
+    + analyzePerformance(): void
+    + generateReport(): String
+    + calculateRecoveryRate(): Float
+}
+
+class CalorieMetrics {
+    - calorieData: List<Float>
+    - totalCalories: Float
+    + analyzePerformance(): void
+    + generateReport(): String
+    + calculateDeficit(): Float
+}
+
+User "1" *-- "0..*" WorkoutPlan
+WorkoutPlan "1" *-- "1..*" Exercise
+WorkoutPlan "1" ..> "0..*" FitnessMetrics
+User <|-- FreeUser
+User <|-- PremiumUser
+Exercise <|-- CardioExercise
+Exercise <|-- StrengthExercise
+FitnessMetrics <|-- HeartRateMetrics
+FitnessMetrics <|-- CalorieMetrics
+@enduml

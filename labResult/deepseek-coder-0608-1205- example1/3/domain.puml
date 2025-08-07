@@ -1,0 +1,38 @@
+```plantuml
+@startuml
+    class Customer {
+        - customerId: string
+        - name: string
+        - driverLicenseNumber: string
+        + rentCar(): RentalReceipt
+    }
+
+    class Car {
+        - carId: string
+        - licensePlate: string
+        - model: string
+        - dailyRate: float
+        + checkAvailability(): boolean
+        + calculateRentalCost(days: int): float
+    }
+
+    class RentalReceipt {
+        - receiptId: string
+        - rentalDate: Date
+        - returnDate: Date
+        + generateInvoice(): Invoice
+    }
+
+    class Branch {
+        - branchId: string
+        - location: string
+        - inventory: Car[]
+        + processReturn(car: Car): void
+        + addCarToInventory(car: Car): void
+    }
+
+    Customer "1" --> "0..*" RentalReceipt : has
+    Customer "1" --> "1" Car : rents
+    Car "1" --> "1" Branch : locatedAt
+    RentalReceipt "1" --> "1" Car : references
+@enduml

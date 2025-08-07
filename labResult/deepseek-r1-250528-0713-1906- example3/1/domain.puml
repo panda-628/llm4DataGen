@@ -1,0 +1,64 @@
+```plantuml
+@startuml
+class Reservation {
+    - reservationId: String
+    - checkInDate: Date
+    - checkOutDate: Date
+    - status: ReservationStatus
+    + createReservation(roomType: RoomType, dates: DateRange): Confirmation
+    + modifyReservation(newDates: DateRange): boolean
+    + cancelReservation(): RefundAmount
+}
+
+class Guest {
+    - guestId: String
+    - loyaltyPoints: int
+    + registerGuest(details: GuestDetails): boolean
+    + updateLoyalty(points: int): void
+}
+
+class Room {
+    - roomNumber: String
+    - floor: int
+    - status: RoomStatus
+}
+
+class RoomInventory {
+    - availableRooms: Map<RoomType, List<Room>>
+    + checkAvailability(roomType: RoomType, dateRange: DateRange): boolean
+}
+
+class RoomType {
+    - typeName: String
+    - description: String
+    - basePrice: double
+}
+
+class StandardRoom {
+}
+
+class Suite {
+    - hasJacuzzi: boolean
+}
+
+class Service {
+    - serviceId: String
+    - description: String
+    - price: double
+}
+
+class AmenityService {
+    - includedAmenities: List<String>
+}
+
+' Fixed relationships
+RoomType <|-- StandardRoom
+RoomType <|-- Suite
+Room o-- RoomType : has type
+Reservation "1" --> "1" Guest : reserved by
+Reservation "1" --> "1" RoomType : for
+Reservation "1" --> "0..1" Room : assigned room
+Reservation "1" --> "0..*" Service : includes services
+RoomInventory "1" --> "1..*" Room : manages
+Service <|-- AmenityService
+@enduml

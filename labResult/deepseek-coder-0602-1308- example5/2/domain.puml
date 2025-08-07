@@ -1,0 +1,58 @@
+```plantuml
+@startuml
+class SmartHomeHub {
+    + controlDevices()
+    + manageAutomation()
+    + hubId : String
+    + processSensorData()
+}
+
+interface DeviceController {
+    + turnOn()
+    + turnOff()
+    + getStatus()
+}
+
+interface AutomationScheduler {
+    + scheduleRoutine()
+    + cancelRoutine()
+}
+
+class SmartDevice {
+    + connectToHub()
+    + disconnectFromHub()
+    + deviceId : String
+    + status : String
+}
+
+class Sensor {
+    + readData() : float
+    + sensorType : String
+}
+
+class Light {
+    + dim(level: int)
+}
+
+class Thermostat {
+    + setTemperature(temp: float)
+}
+
+class HomeAutomationSystem {
+    + startSystem()
+    + stopSystem()
+    + addDevice()
+    + removeDevice()
+}
+
+HomeAutomationSystem --> DeviceController
+HomeAutomationSystem --> AutomationScheduler
+HomeAutomationSystem --> SmartHomeHub
+DeviceController --> SmartDevice
+AutomationScheduler --> SmartDevice
+SmartDevice <|-- Sensor
+SmartDevice <|-- Light
+SmartDevice <|-- Thermostat
+SmartHomeHub --> SmartDevice
+Sensor --o SmartDevice : reports to
+@enduml

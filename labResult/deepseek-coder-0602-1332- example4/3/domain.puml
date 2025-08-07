@@ -1,0 +1,52 @@
+```plantuml
+@startuml
+class FitnessClass {
+    + className: String
+    + maxCapacity: int
+    + scheduleClass(): void
+    + cancelClass(reason: String): boolean
+    + getClassDetails(): String
+}
+
+class Instructor {
+    + name: String
+    + specialization: String
+    + updateAvailability(): void
+}
+
+class ClassSession {
+    + sessionTime: DateTime
+    + duration: int
+    + checkAvailability(): boolean
+    + bookMember(memberId: int): String
+}
+
+class Member {
+    + name: String
+    + membershipId: int
+    + isActive: boolean
+    + joinClass(sessionId: int): boolean
+}
+
+class Payment {
+    + transactionId: String
+    + amount: float
+    + processPayment(): boolean
+}
+
+interface Schedulable {
+    + {abstract} schedule(): void
+    + {abstract} cancel(): boolean
+}
+
+abstract class FitnessEntity {
+    + {abstract} getId(): int
+}
+
+Schedulable <|.. FitnessClass
+FitnessEntity <|-- FitnessClass
+FitnessEntity <|-- Instructor
+FitnessClass "1" *-- "many" ClassSession
+Member "1" -- "many" ClassSession
+ClassSession "1" -- "0..1" Payment
+@enduml

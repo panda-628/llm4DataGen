@@ -1,0 +1,59 @@
+```plantuml
+@startuml
+class User {
+    - name: String
+    - age: int
+    - weight: float
+    + calculateBMI(): float
+    + getWorkoutHistory(): List<Workout>
+    + setFitnessGoal(FitnessGoal): void
+}
+
+class Workout {
+    - date: Date
+    - caloriesBurned: float
+    + getDuration(): Duration
+    + logExercise(exercise: Exercise): void
+}
+
+class Exercise {
+    - name: String
+    - type: String
+    - caloriesPerMinute: float
+}
+
+class FitnessGoal {
+    - targetMetrics: List<String>
+    - targetDate: Date
+}
+
+class Activity {
+    - name: String
+    - duration: Duration
+}
+
+class Cardio {
+    - distance: float
+    - pace: float
+}
+
+class StrengthTraining {
+    - sets: int
+    - reps: int
+    - weight: float
+}
+
+class ExerciseLog {
+    - date: Date
+    - exercises: List<Exercise>
+}
+
+Activity <|-- Cardio
+Activity <|-- StrengthTraining
+User --> Cardio
+User --> StrengthTraining
+User "1" *-- "many" Workout
+User "1" o-- "1" FitnessGoal
+Workout "1" *-- "many" Exercise
+ExerciseLog "1" *-- "many" Exercise
+@enduml

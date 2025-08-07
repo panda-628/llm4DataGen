@@ -1,0 +1,39 @@
+```plantuml
+@startuml
+    class User {
+        - name: string
+        - age: number
+        - weight: number
+        + getWorkoutHistory(): Workout[]
+        + getPersonalDetails(): Map<string, any>
+    }
+
+    class Workout {
+        - startTime: DateTime
+        - endTime: DateTime
+        - workoutType: string
+        + calculateCaloriesBurned(): number
+        + getDuration(): number
+        + getPerformanceMetrics(): PerformanceMetrics
+    }
+
+    class Exercise {
+        - name: string
+        - description: string
+        - targetMuscles: string[]
+        + getInstructions(): string
+        + getDifficultyLevel(): string
+    }
+
+    class PerformanceMetrics {
+        - averageHeartRate: number
+        - maxHeartRate: number
+        - caloriesBurned: number
+        + generateReport(): string
+        + getSummary(): Map<string, number>
+    }
+
+    User "1" --> "*" Workout : hasHistory
+    Workout "1" --> "*" Exercise : contains
+    Workout "1" --> "1" PerformanceMetrics : produces
+@enduml

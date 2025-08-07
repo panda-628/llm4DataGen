@@ -1,0 +1,86 @@
+:
+
+#corrected model
+```plantuml
+@startuml FarmersMarketVendorManagementSystem
+
+class Vendor {
+  + vendorId: string
+  + businessName: string
+  + ownerName: string
+  + contactEmail: string
+  + phoneNumber: string
+  + taxId: string
+  + description: string
+  + registrationDate: Date
+  + isActive: boolean
+  + approvalStatus: string
+  --
+  + applyForMarket(marketId)
+  + updateProfile()
+  + viewSalesReport(startDate, endDate)
+  + checkMarketSchedule(marketId)
+}
+
+class Product {
+  + productId: string
+  + name: string
+  + category: string
+  + price: number
+  + unit: string
+  + description: string
+  + isOrganic: boolean
+  + harvestDate: Date
+  + quantityAvailable: number
+  + reorderLevel: number
+  --
+  + updateStock(quantityChange)
+  + setPrice(newPrice)
+  + checkAvailability()
+  + setReorderLevel(level)
+}
+
+class Market {
+  + marketId: string
+  + name: string
+  + location: string
+  + operatingDays: string[]
+  + startTime: string
+  + endTime: string
+  + seasonStart: Date
+  + seasonEnd: Date
+  + managerName: string
+  + stallFee: number
+  --
+  + approveVendor(vendorId)
+  + assignStall(vendorId, stallNumber)
+  + updateSchedule(newSchedule)
+  + generateVendorReport()
+  + calculateFees(vendorId)
+}
+
+class Transaction {
+  + transactionId: string
+  + dateTime: Date
+  + totalAmount: number
+  + paymentMethod: string
+  + itemsPurchased: Product[]
+  + customerInfo: string
+  + taxAmount: number
+  + discountApplied: number
+  + vendorId: string
+  + marketId: string
+  --
+  + processPayment()
+  + processRefund()
+  + applyDiscount(discountCode)
+  + generateReceipt()
+  + voidTransaction()
+}
+
+Vendor "1" -- "many" Product : offers
+Vendor "many" -- "many" Market : participatesIn
+Vendor "1" -- "many" Transaction : has
+Market "1" -- "many" Transaction : hosts
+Market "1" -- "many" Product : sells
+@enduml

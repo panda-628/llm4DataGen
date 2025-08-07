@@ -1,0 +1,45 @@
+```plantuml
+@startuml
+class Equipment {
+    + name: String
+    + rentalPrice: int
+    + calculateDeposit(): void
+    + checkAvailability(dateRange: String): boolean
+    + getMaintenanceHistory(): String
+}
+
+class Customer {
+    + membershipId: String
+    + viewRentalHistory(): void
+}
+
+class RentalOrder {
+    + orderNumber: String
+    + validatePayment(): boolean
+    + generateInvoice(duration: int): String
+}
+
+class Payment {
+    + transactionId: String
+    + amount: int
+    + isProcessed: boolean
+}
+
+class Delivery {
+    + trackingNumber: String
+}
+
+interface RentalItem {
+    // Interface members
+}
+
+interface RentalService {
+    // Interface members
+}
+
+RentalItem <|.. Equipment
+RentalService <|.. Customer
+Equipment "1" -- "1..*" RentalOrder
+RentalOrder "1" -- "1" Payment
+RentalOrder "1" -- "0..1" Delivery
+@enduml

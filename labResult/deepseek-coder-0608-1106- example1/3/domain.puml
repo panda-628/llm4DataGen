@@ -1,0 +1,77 @@
+:
+
+#corrected model
+```plantuml
+@startuml PetGroomingSchedulingSystem
+
+class TimeSlot {
+  + id : string {unique}
+  + startTime : datetime
+  + endTime : datetime
+  + isAvailable : boolean
+}
+
+class Pet {
+  + id : string {unique}
+  + name : string
+  + species : string
+  + breed : string
+  + age : number
+  + weight : number
+  + specialNeeds : string {optional}
+  + medicalNotes : string {optional}
+  --
+  + updateMedicalInfo(medicalNotes: string)
+}
+
+class Owner {
+  + id : string {unique}
+  + name : string
+  + phone : string
+  + email : string
+  + address : string
+  --
+  + updateContactInfo(newPhone: string, newEmail: string)
+}
+
+class Groomer {
+  + id : string {unique}
+  + name : string
+  + specialties : string[]
+  + workingHours : string
+  --
+  + setAvailability(availableSlots: TimeSlot[])
+}
+
+class Appointment {
+  + id : string {unique}
+  + date : date
+  + startTime : datetime
+  + endTime : datetime
+  + status : string {enum: requested, confirmed, in-progress, completed, cancelled, no-show}
+  + notes : string {optional}
+  --
+  + reschedule(newDate: date, newTime: datetime)
+  + cancel()
+  + confirm()
+}
+
+class Service {
+  + id : string {unique}
+  + name : string
+  + description : string
+  + duration : number
+  + price : number
+  --
+  + updatePricing(newPrice: number)
+}
+
+Pet "1" -- "1" Owner : ownedBy >
+Pet "1" -- "*" Appointment : hasAppointments >
+Owner "1" -- "*" Pet : owns >
+Groomer "1" -- "*" Appointment : assignedTo >
+Appointment "1" -- "1" Pet : forPet >
+Appointment "1" -- "1" Groomer : assignedGroomer >
+Appointment "*" -- "1..*" Service : includes >
+Groomer "1" -- "*" TimeSlot : hasAvailability >
+@enduml

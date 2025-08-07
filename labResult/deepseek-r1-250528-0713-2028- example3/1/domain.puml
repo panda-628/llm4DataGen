@@ -1,0 +1,71 @@
+```plantuml
+@startuml
+class User {
+    - userId: string
+    - name: string
+    - email: string
+    - membershipStatus: boolean
+    + register(): void
+    + bookClass(classId: string): boolean
+    + cancelBooking(bookingId: string): boolean
+}
+
+class FitnessClass {
+    - classId: string
+    - className: string
+    - duration: int
+    - capacity: int
+    + schedule(date: Date): boolean
+    + checkAvailability(): int
+}
+
+class Booking {
+    - bookingId: string
+    - bookingDate: Date
+    - status: BookingStatus
+    + confirm(): void
+    + cancel(): void
+}
+
+class Payment {
+    - paymentId: string
+    - amount: float
+    - paymentMethod: string
+    + processPayment(): boolean
+    + issueRefund(): boolean
+}
+
+class Instructor {
+    - instructorId: string
+    - name: string
+    - specialization: string
+    + assignToClass(classId: string): boolean
+}
+
+class Location {
+    - locationId: string
+    - name: string
+    - capacity: int
+    + addEquipment(equipment: Equipment): void
+}
+
+class Equipment {
+    - equipmentId: string
+    - type: string
+    - condition: string
+}
+
+class Notification {
+    - notificationId: string
+    - message: string
+    + send(): boolean
+}
+
+Booking "1" -- "1" FitnessClass: books >
+Booking "1" -- "1" User: made by >
+Booking "1" -- "1" Payment: for >
+FitnessClass "1" *-- "1" Location: held at >
+FitnessClass "1" *-- "1" Instructor: taught by >
+Location "1" o-- "n" Equipment: contains >
+User "1" o-- "n" Notification: receives >
+@enduml

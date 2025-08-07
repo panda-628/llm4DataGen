@@ -1,0 +1,38 @@
+@startuml
+class identifier1 {
+    + operation1()
+    + attribute1
+}
+
+interface identifier2 {
+    + operation2()
+    + operation3()
+}
+
+interface identifier3 {
+    + operation4()
+}
+
+class identifier4 {
+    + operation5()
+    + operation6()
+    + attribute2
+}
+
+class identifier5 {
+    + operation7()
+    + attribute3
+}
+
+class identifier6 {
+    
+}
+
+identifier6 --> identifier2
+identifier6 --> identifier3
+identifier6 --> identifier1
+identifier2 --> identifier4
+identifier3 --> identifier4
+identifier4 --> identifier5
+identifier5 --> identifier1
+@enduml

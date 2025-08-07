@@ -1,0 +1,89 @@
+@startuml
+class WorkoutPlan {
+    - user: User
+    - exercises: List<Exercise>
+    - startDate: Date
+    - endDate: Date
+    + WorkoutPlan(User user, List<Exercise> exercises)
+    + startWorkout(): void
+    + logProgress(FitnessMetric metric): void
+    + generateProgressReport(): Report
+    + modifyPlan(): void
+}
+
+class User {
+    - name: String
+    - age: int
+    - weight: float
+    - height: float
+    + updateProfile(): void
+    + viewProgress(): void
+}
+
+class Exercise {
+    - name: String
+    - duration: int
+    + calculateCaloriesBurned(): float
+    + getInstructions(): String
+}
+
+class FitnessMetric {
+    - timestamp: DateTime
+    + analyzePerformance(): void
+    + getTrendAnalysis(): String
+}
+
+class PremiumUser {
+    + createCustomWorkouts(): void
+    + accessPremiumContent(): void
+    + setNutritionPlan(): void
+}
+
+class FreeUser {
+    + viewBasicWorkouts(): void
+}
+
+class CardioExercise {
+    - distance: float
+    - averageSpeed: float
+    + calculateCaloriesBurned(): float
+    + getHeartRateZone(): String
+}
+
+class StrengthExercise {
+    - sets: int
+    - reps: int
+    - weight: float
+    + calculateCaloriesBurned(): float
+    + getOneRepMax(): float
+}
+
+class HeartRateMetric {
+    - measurementUnit: String = "bpm"
+    - currentRate: int
+    - maxRate: int
+    - restingRate: int
+    + analyzePerformance(): void
+    + setTargetZone(min: int, max: int): void
+    + getRecoveryRate(): int
+}
+
+class DistanceMetric {
+    - measurementUnit: String = "km"
+    - value: float
+    - target: float
+    + analyzePerformance(): void
+    + setTarget(value: float): void
+    + getPace(): float
+}
+
+WorkoutPlan *-- User
+WorkoutPlan *-- Exercise
+WorkoutPlan ..> FitnessMetric
+User <|-- PremiumUser
+User <|-- FreeUser
+Exercise <|-- CardioExercise
+Exercise <|-- StrengthExercise
+FitnessMetric <|-- HeartRateMetric
+FitnessMetric <|-- DistanceMetric
+@enduml

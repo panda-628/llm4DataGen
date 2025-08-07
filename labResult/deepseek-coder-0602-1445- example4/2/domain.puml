@@ -1,0 +1,49 @@
+```plantuml
+@startuml
+class SmartDevice {
+    + deviceId: String
+    + status: int
+    + turnOn(): void
+    + turnOff(): boolean
+    + getStatus(): String
+}
+
+class RoomController {
+    + roomName: String
+    + controlAllDevices(): void
+}
+
+class LightBulb {
+    + brightnessLevel: int
+    + isEnergySaving(): boolean
+    + setBrightness(level: int): void
+}
+
+class Thermostat {
+    + currentTemp: float
+    + targetTemp: float
+    + isHeating: boolean
+    + setTemperature(temp: float): void
+}
+
+class SmartLock {
+    + lockCode: String
+    + lock(): void
+    + unlock(code: String): boolean
+}
+
+interface DeviceInterface {
+    + {abstract} getDeviceInfo(): String
+}
+
+abstract class AbstractDevice {
+    + {abstract} initialize(): void
+}
+
+DeviceInterface <|.. SmartDevice
+AbstractDevice <|-- SmartDevice
+AbstractDevice <|-- RoomController
+SmartDevice <|-- LightBulb
+SmartDevice <|-- Thermostat
+SmartDevice <|-- SmartLock
+@enduml

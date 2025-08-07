@@ -1,0 +1,43 @@
+@startuml
+class identifier1 {
+    - attribute1: type1
+    - attribute2: type2
+    - attribute3: type3
+    + operation1(): returnType1
+    + operation2(): returnType2
+    + operation3(): returnType3
+}
+
+class identifier2 {
+    - attribute4: type4
+    + operation4(): returnType4
+    + operation5(parameter1: type5): returnType5
+}
+
+class identifier3 {
+}
+
+class identifier4 {
+    - attribute5: List<type6>
+}
+
+class identifier5 {
+}
+
+class identifier6 {
+}
+
+class identifier7 {
+}
+
+class identifier8 {
+}
+
+identifier5 <|.. identifier6
+identifier5 <|.. identifier7
+identifier6 <|-- identifier1
+identifier7 <|-- identifier8
+identifier2 <|-- identifier1
+identifier1 o-- identifier4
+identifier1 *-- identifier3
+@enduml

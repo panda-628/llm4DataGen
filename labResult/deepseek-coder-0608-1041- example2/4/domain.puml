@@ -1,0 +1,89 @@
+:
+
+#corrected model
+```plantuml
+@startuml
+class Rental {
+    - customer: Customer
+    - vehicles: List<Vehicle>
+    - startDate: Date
+    - endDate: Date
+    - insurance: Insurance
+    + Rental(Customer customer, List<Vehicle> vehicles, Date start, Date end)
+    + processRental(): void
+    + calculateTotalCost(): double
+    + addInsurance(Insurance insurance): void
+    + processPayment(Payment payment): void
+}
+
+class Customer {
+    - name: String
+    - contactInfo: String
+    - licenseNumber: String
+    + verifyLicense(): boolean
+    + getCustomerDetails(): String
+}
+
+class Vehicle {
+    - licensePlate: String
+    - model: String
+    - rentalStatus: RentalStatus
+    + checkAvailability(): boolean
+    + getVehicleDetails(): String
+}
+
+class Insurance {
+    - coverageType: String
+    - coverageAmount: double
+    + calculatePremium(): double
+    + getCoverageDetails(): String
+}
+
+class Payment {
+    - amount: double
+    - paymentMethod: String
+    - paymentDate: Date
+    + processPayment(): boolean
+}
+
+class IndividualCustomer {
+    - personalDiscount: double
+}
+
+class CorporateCustomer {
+    - corporateDiscount: double
+}
+
+class Car {
+    - numberOfSeats: int
+}
+
+class Truck {
+    - loadCapacity: double
+}
+
+class BasicInsurance {
+}
+
+class PremiumInsurance {
+    - additionalCoverage: String[]
+}
+
+enum RentalStatus {
+    AVAILABLE
+    RENTED
+    MAINTENANCE
+}
+
+Rental *-- Customer
+Rental *-- Vehicle
+Rental *-- Insurance
+Rental ..> Payment
+Customer <|-- IndividualCustomer
+Customer <|-- CorporateCustomer
+Vehicle <|-- Car
+Vehicle <|-- Truck
+Insurance <|-- BasicInsurance
+Insurance <|-- PremiumInsurance
+Vehicle -- RentalStatus
+@enduml

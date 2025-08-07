@@ -1,0 +1,57 @@
+```plantuml
+@startuml
+class CodeModule {
+    - name: String
+    - lineCount: int
+    - isTested: boolean
+    + operation1(): void
+    + operation2(): boolean
+    + operation3(): String
+}
+
+class VersionControl {
+    - versionNumber: float
+    + operation4(): int
+    + operation5(parameter1: String): boolean
+}
+
+class Dependency {
+    - name: String
+    - version: String
+    + getDependencyInfo(): String
+}
+
+class ResourceManager {
+    - files: List<File>
+    + addFile(file: File): void
+    + removeFile(file: File): boolean
+}
+
+class DevelopmentArtifact {
+    - createdDate: Date
+    + getArtifactInfo(): String
+}
+
+class SourceCode {
+    - language: String
+    + compile(): boolean
+}
+
+class Documentation {
+    - format: String
+    + generate(): void
+}
+
+class APIDocumentation {
+    - apiVersion: String
+    + generateAPIDocs(): void
+}
+
+DevelopmentArtifact <|.. SourceCode
+DevelopmentArtifact <|.. Documentation
+SourceCode <|-- CodeModule
+Documentation <|-- APIDocumentation
+VersionControl <|-- CodeModule
+CodeModule o-- ResourceManager
+CodeModule *-- Dependency
+@enduml

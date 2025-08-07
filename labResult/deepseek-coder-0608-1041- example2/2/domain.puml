@@ -1,0 +1,88 @@
+:
+
+#corrected model
+```plantuml
+@startuml
+class SmartHomeSystem {
+    - hub: Hub
+    - devices: List<Device>
+    - rules: List<AutomationRule>
+    + SmartHomeSystem(Hub hub, List<Device> devices)
+    + activateSecurityMode(): void
+    + addDevice(Device device): void
+    + addAutomationRule(AutomationRule rule): void
+    + executeRules(): void
+}
+
+interface Controllable {
+    + turnOn(): void
+    + turnOff(): void
+    + getStatus(): String
+}
+
+class Hub {
+    + syncDevices(): void
+    + discoverNewDevices(): void
+    + sendCommand(Device device, String command): void
+}
+
+class Device {
+    <<abstract>>
+    + deviceId: String
+    + getName(): String
+}
+
+class AutomationRule {
+    <<abstract>>
+    + ruleName: String
+    + isActive: boolean
+    + execute(): void
+    + enable(): void
+    + disable(): void
+}
+
+class WiredHub {
+    + maxConnections: int
+    + syncDevices(): void
+}
+
+class WirelessHub {
+    + signalStrength: int
+    + syncDevices(): void
+}
+
+class LightingDevice {
+    + brightness: int
+    + setBrightness(int level): void
+}
+
+class SecurityDevice {
+    + isTriggered: boolean
+    + triggerAlarm(): void
+}
+
+class TimeBasedRule {
+    - schedule: String
+    - lastExecuted: DateTime
+    + execute(): void
+    + updateSchedule(String newSchedule): void
+}
+
+class SensorBasedRule {
+    - triggerConditions: String
+    - sensorThreshold: float
+    + execute(): void
+    + updateConditions(String conditions): void
+}
+
+SmartHomeSystem *-- Hub
+SmartHomeSystem *-- Device
+SmartHomeSystem *-- AutomationRule
+Hub <|-- WiredHub
+Hub <|-- WirelessHub
+Device <|-- LightingDevice
+Device <|-- SecurityDevice
+Device ..|> Controllable
+AutomationRule <|-- TimeBasedRule
+AutomationRule <|-- SensorBasedRule
+@enduml

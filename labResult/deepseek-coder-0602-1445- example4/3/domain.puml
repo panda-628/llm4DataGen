@@ -1,0 +1,58 @@
+```plantuml
+@startuml
+class Customer {
+    + name: String
+    + customerId: int
+    + register(): void
+    + verifyLicense(licenseNumber: String): boolean
+    + getRentalHistory(): String
+}
+
+class Vehicle {
+    + licensePlate: String
+    + make: String
+    + model: String
+    + year: int
+    + status: String
+    + updateStatus(newStatus: String): void
+}
+
+class Reservation {
+    + reservationNumber: String
+    + startDate: Date
+    + endDate: Date
+    + checkAvailability(vehicle: Vehicle): boolean
+    + calculateCost(rentalDays: int): double
+}
+
+class Rental {
+    + rentalId: String
+    + duration: int
+    + isActive: boolean
+    + startRental(): void
+    + endRental(): void
+}
+
+class Payment {
+    + transactionId: String
+    + amount: double
+    + paymentDate: Date
+    + processPayment(): boolean
+}
+
+interface RentalObserver {
+    + {abstract} notifyRentalEnd(rental: Rental): void
+}
+
+abstract class User {
+    + {abstract} login(username: String, password: String): boolean
+    + {abstract} logout(): void
+}
+
+RentalObserver <|.. Customer
+User <|-- Customer
+Customer "1" --> "*" Rental
+Customer "1" --> "*" Reservation
+Reservation "1" --> "1" Payment
+Reservation "1" --> "1" Vehicle
+@enduml

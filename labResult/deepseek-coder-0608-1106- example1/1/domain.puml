@@ -1,0 +1,87 @@
+:
+
+#corrected model
+```plantuml
+@startuml FitnessClassBookingSystem
+
+class Member {
+  + memberId: String
+  + name: String
+  + email: String
+  + phone: String
+  + dateOfBirth: Date
+  + membershipLevel: String
+  + joinDate: Date
+  + status: String
+  --
+  + register()
+  + updateProfile()
+  + bookClass(classId)
+  + cancelBooking(bookingId)
+  + viewBookings()
+  + viewPaymentHistory()
+}
+
+class Instructor {
+  + instructorId: String
+  + name: String
+  + specialization: String
+  + certification: String
+  + bio: String
+  --
+  + createClass(classDetails)
+  + updateClass(classId, classDetails)
+  + cancelClass(classId)
+  + viewSchedule()
+  + viewAssignedClasses()
+}
+
+class FitnessClass {
+  + classId: String
+  + className: String
+  + description: String
+  + schedule: DateTime
+  + duration: Duration
+  + capacity: Number
+  + currentAttendance: Number
+  + difficultyLevel: String
+  + equipmentRequired: String[]
+  + location: String
+  --
+  + checkAvailability()
+  + updateDetails(newDetails)
+  + cancelClass()
+  + addAttendee(memberId)
+  + removeAttendee(memberId)
+}
+
+class Booking {
+  + bookingId: String
+  + bookingDate: DateTime
+  + status: String {CONFIRMED, CANCELLED, COMPLETED}
+  + attendanceStatus: String {PRESENT, ABSENT}
+  --
+  + confirm()
+  + cancel()
+  + checkIn()
+}
+
+class Payment {
+  + paymentId: String
+  + amount: Number
+  + paymentDate: DateTime
+  + paymentMethod: String
+  + status: String {PENDING, COMPLETED, REFUNDED}
+  --
+  + processPayment()
+  + refund()
+  + generateReceipt()
+}
+
+Member "1" --> "many" Booking : makes
+Member "1" --> "many" Payment : makes
+Instructor "1" --> "many" FitnessClass : teaches
+FitnessClass "1" --> "many" Booking : has
+Booking "1" --> "1" Payment : associatedWith
+FitnessClass "1" --> "1" Instructor : conductedBy
+@enduml

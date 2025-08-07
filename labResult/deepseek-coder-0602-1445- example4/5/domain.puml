@@ -1,0 +1,53 @@
+```plantuml
+@startuml
+class Patient {
+    + name: String
+    + age: int
+    + scheduleAppointment(): void
+    + cancelAppointment(appointmentId: String): boolean
+    + getMedicalHistory(): String
+}
+
+class Doctor {
+    + name: String
+    + specialization: String
+    + updateAvailability(): void
+}
+
+class Appointment {
+    + appointmentTime: DateTime
+    + status: AppointmentStatus
+    + isConfirmed(): boolean
+    + reschedule(newTime: DateTime): boolean
+}
+
+class MedicalRecord {
+    + diagnosis: String
+    + treatmentDetails: String
+    + isArchived: boolean
+}
+
+class Prescription {
+    + medicationDetails: String
+    + dosage: String
+    + duration: String
+}
+
+interface Schedulable {
+    + scheduleAppointment(): void
+    + cancelAppointment(): boolean
+}
+
+abstract class Person {
+    + name: String
+    + contactInfo: String
+}
+
+Schedulable <|.. Patient
+Person <|-- Patient
+Person <|-- Doctor
+Patient "1" -- "0..*" Appointment
+Doctor "1" -- "0..*" Appointment
+Appointment "1" -- "1" MedicalRecord
+Appointment "1" -- "0..1" Prescription
+@enduml

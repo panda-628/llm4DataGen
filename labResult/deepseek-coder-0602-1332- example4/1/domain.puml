@@ -1,0 +1,52 @@
+```plantuml
+@startuml
+class User {
+    + name: String
+    + age: int
+    + logWorkout(): void
+    + setFitnessGoal(goalDescription: String): boolean
+    + getUserDetails(): String
+}
+
+class Workout {
+    + workoutType: String
+    + duration: int
+    + calculateCaloriesBurned(): int
+}
+
+class Exercise {
+    + exerciseName: String
+    + difficultyLevel: int
+    + isCompleted(): boolean
+    + getInstructions(): String
+}
+
+class FitnessGoal {
+    + goalDescription: String
+    + targetValue: int
+    + currentProgress: int
+    + isAchieved(): boolean
+}
+
+class NutritionPlan {
+    + planName: String
+    + dailyCalories: int
+    + macronutrientDistribution: String
+}
+
+interface Trackable {
+    + {abstract} trackProgress(): void
+}
+
+abstract class BaseEntity {
+    + id: String
+    + createdAt: Date
+}
+
+Trackable <|.. User
+BaseEntity <|-- User
+BaseEntity <|-- Workout
+User "1" *-- "many" Exercise
+User "1" *-- "many" FitnessGoal
+Workout "1" *-- "many" Exercise
+@enduml

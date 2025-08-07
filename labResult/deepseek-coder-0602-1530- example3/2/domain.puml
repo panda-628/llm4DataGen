@@ -1,0 +1,58 @@
+```plantuml
+@startuml
+class Device {
+    - deviceId: string
+    - manufacturer: string
+    - isOnline: boolean
+    + turnOn(): void
+    + turnOff(): void
+    + getStatus(): string
+}
+
+class Room {
+    - roomName: string
+    + addDevice(device: Device): void
+    + removeDevice(device: Device): boolean
+    + getDevices(): List<Device>
+}
+
+class Sensor {
+    - sensorType: string
+    - currentValue: float
+    + readValue(): float
+}
+
+class AutomationRule {
+    - ruleId: string
+    - triggerConditions: List<Condition>
+    + evaluateConditions(): boolean
+    + executeActions(): void
+}
+
+class Condition {
+    - threshold: float
+    + isSatisfied(): boolean
+}
+
+class SmartLight {
+    - brightness: int
+    - color: string
+    + setBrightness(level: int): void
+    + changeColor(color: string): void
+}
+
+class Thermostat {
+    - currentTemp: float
+    - targetTemp: float
+    + setTemperature(temp: float): void
+    + getCurrentTemp(): float
+}
+
+Device <|-- SmartLight
+Device <|-- Thermostat
+Device <|-- Sensor
+Room "1" *-- "0..*" Device
+AutomationRule "1" *-- "1..*" Condition
+Condition <|-- TemperatureCondition
+Condition <|-- LightCondition
+@enduml
