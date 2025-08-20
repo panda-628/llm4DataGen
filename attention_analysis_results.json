@@ -2,169 +2,169 @@
   "layer_attention_sums": {
     "layer_0": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 4.2156758308410645,
-        "std_value": 0.4956967830657959,
+        "mean_value": 0.2926829159259796,
+        "max_value": 3.3463284969329834,
+        "std_value": 0.346478670835495,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.35130631923675537,
-        "std_value": 0.04130806401371956,
+        "mean_value": 0.024390241131186485,
+        "max_value": 0.2788607180118561,
+        "std_value": 0.028873223811388016,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_1": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 6.26589298248291,
-        "std_value": 0.9845348596572876,
+        "mean_value": 0.292682945728302,
+        "max_value": 6.03096866607666,
+        "std_value": 0.6300960779190063,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545455053448677,
-        "max_value": 0.5221577286720276,
-        "std_value": 0.0820445716381073,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.5025807023048401,
+        "std_value": 0.05250800773501396,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_2": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 8.0695161819458,
-        "std_value": 1.023714542388916,
+        "mean_value": 0.2926829159259796,
+        "max_value": 7.386120796203613,
+        "std_value": 0.6703471541404724,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.6724596619606018,
-        "std_value": 0.08530954271554947,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.6155100464820862,
+        "std_value": 0.05586226284503937,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_3": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 5.002326965332031,
-        "std_value": 0.741868793964386,
+        "mean_value": 0.2926829159259796,
+        "max_value": 4.660798072814941,
+        "std_value": 0.4978261888027191,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.41686058044433594,
-        "std_value": 0.061822399497032166,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.3883998394012451,
+        "std_value": 0.041485514491796494,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_4": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 5.997304439544678,
-        "std_value": 0.9877064228057861,
+        "mean_value": 0.292682945728302,
+        "max_value": 5.849291801452637,
+        "std_value": 0.6697247624397278,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.49977537989616394,
-        "std_value": 0.08230886608362198,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.48744097352027893,
+        "std_value": 0.05581039562821388,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_5": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 6.0016069412231445,
-        "std_value": 1.1982170343399048,
+        "mean_value": 0.2926829159259796,
+        "max_value": 5.821648597717285,
+        "std_value": 0.7851572036743164,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545455053448677,
-        "max_value": 0.5001339316368103,
-        "std_value": 0.09985142201185226,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.48513737320899963,
+        "std_value": 0.06542976945638657,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_6": {
       "sum_attention": {
-        "mean_value": 0.5454545021057129,
-        "max_value": 5.825816631317139,
-        "std_value": 1.1814831495285034,
+        "mean_value": 0.2926829159259796,
+        "max_value": 5.643675327301025,
+        "std_value": 0.7840908765792847,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.4854847192764282,
-        "std_value": 0.09845692664384842,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.47030627727508545,
+        "std_value": 0.06534090638160706,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_7": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 5.825222015380859,
-        "std_value": 1.1674481630325317,
+        "mean_value": 0.2926829159259796,
+        "max_value": 5.724417209625244,
+        "std_value": 0.7980934381484985,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.4854351580142975,
-        "std_value": 0.09728734940290451,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.4770347774028778,
+        "std_value": 0.06650778651237488,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_8": {
       "sum_attention": {
-        "mean_value": 0.5454546213150024,
-        "max_value": 6.396162509918213,
-        "std_value": 1.278167486190796,
+        "mean_value": 0.2926829159259796,
+        "max_value": 6.2342987060546875,
+        "std_value": 0.8207396268844604,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545455053448677,
-        "max_value": 0.5330135226249695,
-        "std_value": 0.10651395469903946,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.519524872303009,
+        "std_value": 0.0683949664235115,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_9": {
       "sum_attention": {
-        "mean_value": 0.5454546213150024,
-        "max_value": 6.349266052246094,
-        "std_value": 1.176230549812317,
+        "mean_value": 0.2926829159259796,
+        "max_value": 5.852692127227783,
+        "std_value": 0.6834279298782349,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.5291054844856262,
-        "std_value": 0.09801921248435974,
+        "mean_value": 0.024390246719121933,
+        "max_value": 0.48772433400154114,
+        "std_value": 0.056952327489852905,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_10": {
       "sum_attention": {
-        "mean_value": 0.5454546213150024,
-        "max_value": 4.916122913360596,
-        "std_value": 0.9753578305244446,
+        "mean_value": 0.2926829159259796,
+        "max_value": 3.3675379753112793,
+        "std_value": 0.6417588591575623,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.4096769094467163,
-        "std_value": 0.08127981424331665,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.28062817454338074,
+        "std_value": 0.05347990244626999,
         "description": "求和权值除以头数(12)"
       }
     },
     "layer_11": {
       "sum_attention": {
-        "mean_value": 0.5454545617103577,
-        "max_value": 5.35520601272583,
-        "std_value": 1.0151222944259644,
+        "mean_value": 0.292682945728302,
+        "max_value": 3.699695110321045,
+        "std_value": 0.6789202094078064,
         "description": "所有12个头的注意力权重求和"
       },
       "mean_attention": {
-        "mean_value": 0.04545454680919647,
-        "max_value": 0.44626715779304504,
-        "std_value": 0.0845935270190239,
+        "mean_value": 0.024390242993831635,
+        "max_value": 0.3083079159259796,
+        "std_value": 0.0565766841173172,
         "description": "求和权值除以头数(12)"
       }
     }

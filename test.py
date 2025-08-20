@@ -108,8 +108,10 @@ model_path: str = 'C:\\AppAndData\\codeAndproject\\bertBaseUncased'
 model = BertModel.from_pretrained(model_path, output_attentions=True)
 tokenizer = BertTokenizer.from_pretrained(model_path)
 
-code = "def add(a, b): return a + b "
-text = "A function that adds two numbers."
+code = """
+One Doctor is associated with multiple Requisitions.
+"""
+text = """A doctor may also indicate that the tests on a requisition are to be repeated for a specified number of times and interval."""
 inputs = tokenizer.encode_plus(text, code, return_tensors='pt')
 input_ids = inputs['input_ids']
 token_type_ids = inputs['token_type_ids']
